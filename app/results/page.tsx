@@ -75,7 +75,8 @@ export default async function ResultsPage() {
   // Count every unordered pair of slides that co-occur in a combination
   const pairCounts = new Map<string, number>();
   for (const [, items] of byCombo) {
-    const keys = items.map((it) => keyOf(it.submission_id, it.slide_number));
+    if (!items) continue;
+const keys = items.map((it) => keyOf(it.submission_id, it.slide_number));
     for (let i = 0; i < keys.length; i++) {
       for (let j = i + 1; j < keys.length; j++) {
         const [a, b] = [keys[i], keys[j]].sort();
